@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Abacus Game</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen p-8">
+    <div class="container mx-auto max-w-3xl">
+        <!-- Header -->
+        <div class="text-center mb-8">
+            <h1 class="text-4xl font-bold text-indigo-900 mb-2">🧮 Abacus Game</h1>
+            <p class="text-gray-700">Match the target number by adjusting the beads on the abacus!</p>
+        </div>
+
+        <!-- Main Game Container -->
+        <div class="bg-white rounded-lg shadow-2xl p-8">
+            <!-- Target Number Section -->
+            <div class="mb-8 p-6 bg-indigo-50 rounded-lg border-2 border-indigo-300">
+                <h2 class="text-xl font-semibold text-indigo-900 mb-2">Target Number</h2>
+                <div id="targetNumber" class="text-5xl font-bold text-indigo-600 text-center">
+                    12345
+                </div>
+            </div>
+
+            <!-- Abacus Container -->
+            <div class="mb-8">
+                <!-- Abacus Frame with wooden appearance -->
+                <div class="abacus-frame">
+                    <!-- Rod Header with labels -->
+                    <div class="rod-headers">
+                        <div class="rod-header">T-Tn</div>
+                        <div class="rod-header">Th</div>
+                        <div class="rod-header">H</div>
+                        <div class="rod-header">T</div>
+                        <div class="rod-header">O</div>
+                    </div>
+
+                    <!-- Beads area -->
+                    <div class="beads-container">
+                        <!-- Ten Thousands Rod -->
+                        <div class="rod-wrapper" data-place="10000">
+                            <div class="rod">
+                                <div class="beads-area" data-color="green"></div>
+                            </div>
+                        </div>
+
+                        <!-- Thousands Rod -->
+                        <div class="rod-wrapper" data-place="1000">
+                            <div class="rod">
+                                <div class="beads-area" data-color="purple"></div>
+                            </div>
+                        </div>
+
+                        <!-- Hundreds Rod -->
+                        <div class="rod-wrapper" data-place="100">
+                            <div class="rod">
+                                <div class="beads-area" data-color="blue"></div>
+                            </div>
+                        </div>
+
+                        <!-- Tens Rod -->
+                        <div class="rod-wrapper" data-place="10">
+                            <div class="rod">
+                                <div class="beads-area" data-color="yellow"></div>
+                            </div>
+                        </div>
+
+                        <!-- Units Rod -->
+                        <div class="rod-wrapper" data-place="1">
+                            <div class="rod">
+                                <div class="beads-area" data-color="red"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Control Buttons Below -->
+                <div class="controls-container">
+                    <div class="control-group" data-place="10000">
+                        <button class="remove-btn" data-place="10000">−</button>
+                        <button class="add-btn" data-place="10000">+</button>
+                    </div>
+                    <div class="control-group" data-place="1000">
+                        <button class="remove-btn" data-place="1000">−</button>
+                        <button class="add-btn" data-place="1000">+</button>
+                    </div>
+                    <div class="control-group" data-place="100">
+                        <button class="remove-btn" data-place="100">−</button>
+                        <button class="add-btn" data-place="100">+</button>
+                    </div>
+                    <div class="control-group" data-place="10">
+                        <button class="remove-btn" data-place="10">−</button>
+                        <button class="add-btn" data-place="10">+</button>
+                    </div>
+                    <div class="control-group" data-place="1">
+                        <button class="remove-btn" data-place="1">−</button>
+                        <button class="add-btn" data-place="1">+</button>
+                    </div>
+                </div>
+
+                <!-- Current Value Display -->
+                <div class="current-value-display">
+                    <span>Current Value:</span>
+                    <div id="currentValue" class="text-3xl font-bold text-blue-600">0</div>
+                </div>
+                <div class="mb-8 grid grid-cols-2 gap-4">
+                    <div class="p-6 bg-yellow-50 rounded-lg border-2 border-yellow-300">
+                        <h3 class="text-lg font-semibold text-yellow-900 mb-2">Status</h3>
+                        <div id="statusMessage" class="text-lg font-semibold text-yellow-800 text-center">
+                            Keep adjusting the beads.
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <button id="newQuestionBtn"
+                            class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-6 rounded-lg text-lg transition duration-200 transform hover:scale-105">
+                            🔄 New Question
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="text-center mt-8 text-gray-700">
+                <p class="text-sm">Master the abacus by matching the target numbers!</p>
+            </div>
+        </div>
+
+        <script src="script.js"></script>
+</body>
+
+</html>
