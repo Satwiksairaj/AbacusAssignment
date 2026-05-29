@@ -134,3 +134,35 @@ function render() {
         }
     }
 }
+function addTodo() {
+    const todoInput = document.getElementById('todoInput');
+    const todoText = todoInput.value;
+    if (!todoText) return;
+
+    fetch('/api/todos', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({task: todoText})
+    }).then(response => {
+        if (response.ok) {
+            todoInput.value = '';
+            loadTodos();
+        }
+    });
+}
+
+function loadTodos() {
+    fetch('/api/todos')
+        .then(response => response.json())
+        .then(todos => {
+            const todoList = document.getElementById('todoList');
+            todoList.innerHTML = '';
+            todos.forEach(todo => {
+                const li = document.createElement('li');
+                li.textContent = todo.task;
+                todoList.appendChild(li);
+            });
+        });
+}
+
+document.addEventListener('DOMContentLoaded', loadTodos);
