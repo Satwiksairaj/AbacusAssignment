@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo List</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+    <div class="container mx-auto mt-10">
+        <h1 class="text-3xl font-bold mb-5">Todo List</h1>
+        <div>
+            <input type="text" id="todoInput" class="border p-2" placeholder="Add a new todo">
+            <button id="addTodoBtn" class="bg-blue-500 text-white p-2">Add Todo</button>
+        </div>
+        <ul id="todoList" class="mt-5">
+            <!-- Todos will be appended here -->
+        </ul>
+    </div>
+
+    <script>
+        const addTodoBtn = document.getElementById('addTodoBtn');
+        const todoInput = document.getElementById('todoInput');
+        const todoList = document.getElementById('todoList');
+
+        addTodoBtn.addEventListener('click', async () => {
+            const title = todoInput.value;
+            const response = await fetch('/todos', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ title })
+            });
+            const result = await response.json();
+            if (response.ok) {
+                const newTodo = document.createElement('li');
+                newTodo.textContent = title;
+                todoList.appendChild(newTodo);
+                todoInput.value = '';
+            } else {
+                alert('Error: ' + result.message);
+            }
+        });
+    </script>
+</body>
+</html>
